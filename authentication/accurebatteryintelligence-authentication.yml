@@ -1,0 +1,122 @@
+generated: '2026-09-06'
+method: probed
+source: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+name: ACCURE Battery Intelligence authentication profile
+summary: >-
+  ACCURE's platform API gateway is protected by OAuth 2.0 / OpenID Connect via a
+  dedicated Auth0 tenant. There is no public OpenAPI securitySchemes block to derive
+  from and no published authentication documentation, so this profile is built entirely
+  from two things that can be observed without credentials: the OpenID Provider metadata
+  the tenant serves anonymously, and the public client configuration compiled into the
+  platform single-page application bundle.
+provenance:
+  discovery_document: well-known/accurebatteryintelligence-openid-configuration.json
+  spa_bundle: https://accure-platform.com/assets/index-BiGHoC2c.js
+  note: >-
+    The SPA bundle is a public static asset. It carries a build-time environment block
+    (VITE_AUTH0_DOMAIN, VITE_AUTH0_CLIENT_ID, VITE_AUTH0_AUDIENCE) — values that are
+    public by design for a browser-based OAuth public client. No credential was used and
+    no secret is recorded here.
+schemes:
+- id: auth0_oidc
+  type: openIdConnect
+  openIdConnectUrl: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+  issuer: https://production-accure.eu.auth0.com/
+  audience: https://gateway.accure-platform.com
+  applies_to: https://gateway.accure-platform.com
+  description: >-
+    Auth0-issued JWT bearer tokens. The API gateway is registered in the tenant as an
+    Auth0 API whose identifier (audience) is the gateway URL itself.
+  client:
+    kind: public
+    type: SPA / browser (auth0-spa-js + @auth0/auth0-react)
+    client_id: zZhKAGNSgN8KEJd3RwtXKj9lsBD1K1wX
+    note: >-
+      A public OAuth client id, recorded because it is compiled into a publicly served
+      JavaScript bundle and is not a secret under the OAuth public-client model.
+endpoints:
+  authorization: https://production-accure.eu.auth0.com/authorize
+  token: https://production-accure.eu.auth0.com/oauth/token
+  userinfo: https://production-accure.eu.auth0.com/userinfo
+  jwks: https://production-accure.eu.auth0.com/.well-known/jwks.json
+  revocation: https://production-accure.eu.auth0.com/oauth/revoke
+  end_session: https://production-accure.eu.auth0.com/oidc/logout
+  device_authorization: https://production-accure.eu.auth0.com/oauth/device/code
+  registration: https://production-accure.eu.auth0.com/oidc/register
+  backchannel_authentication: https://production-accure.eu.auth0.com/bc-authorize
+  mfa_challenge: https://production-accure.eu.auth0.com/mfa/challenge
+grant_types_supported:
+- client_credentials
+- authorization_code
+- refresh_token
+- password
+- implicit
+- urn:ietf:params:oauth:grant-type:device_code
+- urn:ietf:params:oauth:grant-type:token-exchange
+- urn:ietf:params:oauth:grant-type:jwt-bearer
+- http://auth0.com/oauth/grant-type/password-realm
+- http://auth0.com/oauth/grant-type/passwordless/otp
+- http://auth0.com/oauth/grant-type/mfa-oob
+- http://auth0.com/oauth/grant-type/mfa-otp
+- http://auth0.com/oauth/grant-type/mfa-recovery-code
+response_types_supported:
+- code
+- token
+- id_token
+- code token
+- code id_token
+- token id_token
+- code token id_token
+token_endpoint_auth_methods_supported:
+- client_secret_basic
+- client_secret_post
+- private_key_jwt
+- none
+pkce:
+  supported: true
+  code_challenge_methods:
+  - S256
+  - plain
+id_token_signing_alg_values_supported:
+- HS256
+- RS256
+- PS256
+dpop:
+  supported: true
+  note: >-
+    dpop_signing_alg_values_supported is present in the tenant discovery document. This
+    is Auth0 platform capability, not evidence that ACCURE's gateway requires DPoP.
+scopes_supported:
+- openid
+- profile
+- offline_access
+- name
+- given_name
+- family_name
+- nickname
+- email
+- email_verified
+- picture
+- created_at
+- identities
+- phone
+- address
+sso:
+  claimed: true
+  evidence: https://www.accure.net/battery-analytics/battery-intelligence
+  note: >-
+    ACCURE's product page states the platform supports single sign-on. The tenant
+    discovery document does not enumerate enterprise connections, so the identity
+    providers offered to customers are not observable anonymously.
+gaps:
+- >-
+  No API-level scopes are published. The scopes_supported list above is the Auth0
+  tenant's standard OIDC scope set; the permissions defined on the gateway API
+  (audience https://gateway.accure-platform.com) are not discoverable without a token,
+  so no scopes/ artifact is written.
+- >-
+  No published authentication documentation, key-issuance flow, or token-lifetime policy
+  exists on any ACCURE public surface.
+- >-
+  Every gateway route returns HTTP 403 (edge) or a Fastify 404 envelope to an anonymous
+  request; no unauthenticated read surface was found.

@@ -1,0 +1,124 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  Direct HTTP probe of the named /.well-known/ path list on every host this record
+  knows: the registrable domain and www (accure.net), the platform SPA host
+  (accure-platform.com), the API gateway host named by the SPA's Auth0 audience
+  (gateway.accure-platform.com), and the Auth0 tenant that gateway authenticates
+  against (production-accure.eu.auth0.com).
+name: ACCURE Battery Intelligence well-known documents
+notes: >-
+  ONE real document was found across 45 probes: the OpenID Provider metadata served by
+  ACCURE's own Auth0 tenant, production-accure.eu.auth0.com. That tenant is named
+  verbatim in the platform bundle (VITE_AUTH0_DOMAIN) and is the authorization server
+  for the API gateway, so it is recorded here on the same basis the pipeline records a
+  third-host authorization server (the leadping/authkit.app case). It is vendor-hosted
+  Auth0 infrastructure under an ACCURE-specific tenant name, not a document served from
+  accure.net.
+
+  FALSE POSITIVE RECORDED, NOT CREDITED: accure-platform.com is a Vite single-page
+  application whose catch-all returns HTTP 200 with the same 667-byte HTML shell for
+  every path, including every /.well-known/* path and /llms.txt and /robots.txt. Those
+  200s are shells, not documents, and are scored here as misses.
+
+  gateway.accure-platform.com answers anonymous requests with an nginx HTTP 403 on
+  nearly every path; a handful of paths reach the application and return a Fastify JSON
+  404 envelope. No well-known document is served there.
+hosts:
+- host: www.accure.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: accure.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: accure-platform.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: 'SPA shell, not a document (667 bytes of text/html); treated as a miss.'
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+  - path: /.well-known/api-catalog
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+  - path: /.well-known/agent.json
+    status: 200
+    note: 'SPA shell, not a document; treated as a miss.'
+- host: gateway.accure-platform.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: production-accure.eu.auth0.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: accurebatteryintelligence-openid-configuration.json
+    content_type: application/json
+    note: >-
+      Real OpenID Provider metadata for ACCURE's Auth0 tenant. issuer
+      https://production-accure.eu.auth0.com/. Saved verbatim.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: accurebatteryintelligence-openid-configuration.json
+    content_type: application/json
+    note: >-
+      Auth0 serves the identical document at both paths (RFC 8414 and OIDC Discovery);
+      one file saved.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404

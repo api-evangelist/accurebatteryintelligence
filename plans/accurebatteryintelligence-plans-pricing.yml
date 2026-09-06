@@ -1,0 +1,22 @@
+generated: '2026-09-06'
+method: searched
+source: https://www.accure.net/sitemap.xml
+name: ACCURE Battery Intelligence plans and pricing
+plan_count: 0
+currency: null
+plans: []
+note: >-
+  ACCURE publishes no pricing page and no plan tiers. All 216 URLs in the accure.net
+  sitemap were enumerated and none is a pricing, plans or packages page;
+  https://www.accure.net/pricing returns 404. Commercial engagement runs through
+  "Request a demo" / "Talk to a battery expert" into https://www.accure.net/company/contact-us,
+  i.e. an enterprise sales gate with no self-serve tier. The platform SPA carries an
+  in-product /account/subscriptions route, but it is behind Auth0 and its contents are
+  not observable anonymously.
+evidence:
+- url: https://www.accure.net/pricing
+  status: 404
+- url: https://www.accure.net/sitemap.xml
+  status: 200
+- url: https://www.accure.net/company/contact-us
+  status: 200

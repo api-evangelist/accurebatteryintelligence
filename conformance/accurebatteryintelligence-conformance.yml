@@ -1,0 +1,114 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://production-accure.eu.auth0.com/.well-known/openid-configuration ;
+  https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a39_ACCURE_ISO27001_2022_certificate.pdf ;
+  https://www.accure.net/battery-analytics/battery-intelligence
+name: ACCURE Battery Intelligence conformance and compliance
+summary: >-
+  Two verifiable conformance signals: an OpenID Connect / OAuth 2.0 authorization server
+  (ACCURE's own Auth0 tenant, metadata served anonymously) and a published, in-date
+  ISO/IEC 27001:2022 certificate issued by DQS GmbH. No API-level domain standard could
+  be verified, because ACCURE publishes no machine-readable contract to read one from.
+conformance:
+- id: oauth2
+  conforms: true
+  evidence: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+  note: >-
+    RFC 8414 authorization server metadata is served at /.well-known/oauth-authorization-server
+    on ACCURE's Auth0 tenant, advertising authorization_code, client_credentials,
+    refresh_token, device_code and token-exchange grants.
+- id: oidc
+  conforms: true
+  evidence: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+  note: >-
+    OpenID Connect Discovery 1.0 document with issuer, jwks_uri, userinfo_endpoint and
+    end_session_endpoint. id_token signing algs RS256/PS256/HS256.
+- id: pkce
+  conforms: true
+  evidence: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+  note: 'code_challenge_methods_supported includes S256 (RFC 7636).'
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: https://production-accure.eu.auth0.com/oauth/revoke
+  note: 'revocation_endpoint published in the discovery document.'
+- id: iso-27001
+  conforms: true
+  evidence: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a39_ACCURE_ISO27001_2022_certificate.pdf
+  note: >-
+    ISO/IEC 27001:2022 certificate for ACCURE Battery Intelligence GmbH, Oranienstrasse 9,
+    52066 Aachen, Germany. Certificate registration no. 316212 61 ISMS22, issued by
+    DQS GmbH (accredited body, Frankfurt am Main), date of certification 2024-09-04,
+    valid 2024-09-04 to 2027-09-03. Scope: "Development, operation, and maintenance of
+    battery analytics products, including the provisioning of associated support and
+    consulting services." Statement of Applicability v1.0 of 2024-02-15. Linked from the
+    accure.net site footer as "ISO 27001".
+- id: rfc9457
+  conforms: false
+  evidence: 'No public contract or error reference. Not observable.'
+- id: json:api
+  conforms: false
+  evidence: 'No public contract. Not observable.'
+- id: odata
+  conforms: false
+  evidence: 'No public contract. Not observable.'
+- id: scim
+  conforms: false
+  evidence: >-
+    ACCURE states the platform supports single sign-on, but no SCIM schema URN or
+    provisioning endpoint is published. Not observable.
+domain_standards:
+  regime: energy_utilities
+  checked:
+  - id: opc-ua
+    conforms: false
+    claimed: true
+    evidence: https://www.accure.net/battery-analytics/battery-intelligence
+    note: >-
+      PROSE CLAIM ONLY, DELIBERATELY NOT CREDITED. ACCURE's product page states "Open
+      REST and OPC-UA interfaces stream data to CMMS or market-dispatch tools, while
+      SFTP and API endpoints pull historical logs from virtually any BMS." OPC UA
+      (IEC 62541) is a genuine domain standard for this market and the claim is
+      plausible, but domain_standard_conformance reads the CONTRACT, not a marketing
+      page. ACCURE publishes no OPC UA address-space model, no nodeset file, and no
+      machine-readable contract of any kind, so nothing can be verified. Recorded as a
+      claim to chase, not as a conformance.
+  - id: ieee-2030-5
+    conforms: false
+    evidence: 'Not named on any ACCURE public surface. Not observable.'
+  - id: openadr
+    conforms: false
+    evidence: 'Not named on any ACCURE public surface. Not observable.'
+  - id: green-button
+    conforms: false
+    evidence: 'Not named on any ACCURE public surface. Not observable.'
+  - id: espi
+    conforms: false
+    evidence: 'Not named on any ACCURE public surface. Not observable.'
+  - id: smart-energy-code
+    conforms: false
+    evidence: 'Not named on any ACCURE public surface. Not observable.'
+  note: >-
+    Reward-only dimension. ACCURE's market does have standards worth declaring (OPC UA /
+    IEC 62541 for industrial telemetry, IEEE 2030.5 and OpenADR for grid interaction),
+    and ACCURE says in prose that it speaks one of them. The gap is that it is declared
+    nowhere a machine can read it.
+certifications:
+- name: ISO/IEC 27001:2022
+  status: certified
+  certificate_number: 316212 61 ISMS22
+  issuer: DQS GmbH
+  accredited_body: DQS GmbH, August-Schanz-Strasse 21, 60433 Frankfurt am Main, Germany
+  certified: '2024-09-04'
+  valid_from: '2024-09-04'
+  valid_until: '2027-09-03'
+  scope: >-
+    Development, operation, and maintenance of battery analytics products, including the
+    provisioning of associated support and consulting services.
+  url: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a39_ACCURE_ISO27001_2022_certificate.pdf
+gaps:
+- 'No SOC 2 report or attestation is published.'
+- >-
+  The in-product trust centre route (/account/trust-center in the platform SPA) is behind
+  Auth0; no public trust page exists at trust.accure.net, security.accure.net,
+  accure.net/trust or accure.net/security (all miss).

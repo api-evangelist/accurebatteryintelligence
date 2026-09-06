@@ -1,23 +1,110 @@
 aid: accurebatteryintelligence
-name: Accurebatteryintelligence
-description: 'Accurebatteryintelligence is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+name: ACCURE Battery Intelligence
+description: 'ACCURE Battery Intelligence GmbH (Aachen, Germany, founded 2020) builds cloud
+  battery analytics software for grid-scale battery energy storage systems (BESS), electric
+  vehicle fleets and stationary storage. Its platform ingests telemetry from BMS, EMS and PCS
+  systems and applies predictive models for safety, performance, state-of-charge accuracy,
+  lifetime and warranty management. The customer-facing product is the ACCURE platform at
+  accure-platform.com, an Auth0-protected single-page application backed by an API gateway at
+  gateway.accure-platform.com. ACCURE states the platform offers open REST and OPC-UA
+  interfaces, SFTP and API endpoints for historical BMS logs, single sign-on and webhooks, but
+  publishes no public developer portal, API reference or machine-readable contract.'
+image: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a0b_ACCURE_favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/accurebatteryintelligence/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment
 specificationVersion: '0.20'
 created: '2026-09-06'
 modified: '2026-09-06'
 tags:
 - Company
-apis: []
+- Energy
+- Battery
+- Energy Storage
+- Analytics
+- Artificial Intelligence
+- Internet of Things
+- Electric Vehicles
+- Germany
+apis:
+- aid: accurebatteryintelligence-platform
+  name: ACCURE Battery Intelligence Platform API
+  description: 'The authenticated API gateway behind the ACCURE battery analytics platform.
+    Established by probe, not by documentation: the platform single-page application at
+    accure-platform.com declares VITE_AUTH0_AUDIENCE "https://gateway.accure-platform.com"
+    against the Auth0 tenant production-accure.eu.auth0.com, and that host answers HTTP
+    requests (403 from the edge, and a Fastify JSON 404 envelope on routes that reach the
+    application). ACCURE publishes no OpenAPI, no API reference and no developer portal for
+    it; every route requires an Auth0-issued bearer token. Recorded as an auth-gated surface,
+    not a documented one.'
+  humanURL: https://accure-platform.com
+  baseURL: https://gateway.accure-platform.com
+  image: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a0b_ACCURE_favicon.png
+  position: Producing
+  tags:
+  - Battery
+  - Energy Storage
+  - Analytics
+  properties:
+  - type: Authentication
+    url: authentication/accurebatteryintelligence-authentication.yml
+  - type: Login
+    url: https://accure-platform.com
+common:
+- type: DomainSecurity
+  url: security/accurebatteryintelligence-domain-security.yml
+- type: Website
+  url: https://www.accure.net/
+- type: Blog
+  url: https://www.accure.net/company/blogs
+- type: Support
+  url: https://www.accure.net/company/contact-us
+- type: PrivacyPolicy
+  url: https://www.accure.net/privacy
+- type: Login
+  url: https://accure-platform.com
+- type: Authentication
+  url: authentication/accurebatteryintelligence-authentication.yml
+- type: WellKnown
+  url: well-known/accurebatteryintelligence-well-known.yml
+- type: Conformance
+  url: conformance/accurebatteryintelligence-conformance.yml
+- type: Compliance
+  url: conformance/accurebatteryintelligence-conformance.yml
+- type: Plans
+  url: plans/accurebatteryintelligence-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/accurebatteryintelligence-rate-limits.yml
+- type: LLMsTxt
+  url: llms/accurebatteryintelligence-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://equityzen.com/company/accurebatteryintelligence
+x-enrichment:
+  date: '2026-09-06'
+  status: minimal
+  artifacts_added: 7
+  pass: local-v3
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    ACCURE's only API is the gateway behind its customer platform — accure-platform.com is
+    an Auth0-protected SPA and its gateway at gateway.accure-platform.com answers every
+    anonymous request with an nginx 403 or a Fastify JSON 404 — and there is no developer
+    portal, reference or spec anywhere on accure.net, whose 216-URL sitemap contains no
+    developer, API, docs or pricing page at all.
+  evidence:
+  - url: https://gateway.accure-platform.com/openapi.json
+    status: 403
+  - url: https://gateway.accure-platform.com/swagger.json
+    status: 404
+  - url: https://accure-platform.com/
+    status: 200
+  - url: https://www.accure.net/sitemap.xml
+    status: 200
+  checked: '2026-09-06'

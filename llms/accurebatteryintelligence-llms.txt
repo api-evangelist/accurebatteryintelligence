@@ -1,0 +1,115 @@
+# ACCURE Battery Intelligence
+
+> ACCURE Battery Intelligence GmbH (Aachen, Germany) builds cloud battery analytics
+> software for grid-scale battery energy storage systems (BESS), electric vehicle fleets
+> and stationary storage. Its platform ingests telemetry from BMS, EMS and PCS systems and
+> applies predictive models for safety, performance, state-of-charge accuracy, lifetime and
+> warranty management.
+
+Generated: 2026-09-06
+Method: generated (from apis.yml and the artifacts in this repository)
+Source: https://www.accure.net/ — ACCURE publishes no llms.txt of its own; /llms.txt
+returns 404 on accure.net and www.accure.net, and the accure-platform.com single-page app
+answers 200 with an HTML shell for every path.
+
+## API surface — read this first
+
+ACCURE has NO public API. There is no developer portal, no API reference, no OpenAPI or
+other machine-readable contract, no SDK on any package registry, no CLI, no MCP server, no
+A2A agent card, no public sandbox and no published rate limits or pricing.
+
+The product API that exists is customer-only:
+
+- Platform (human): https://accure-platform.com — an Auth0-protected single-page
+  application. This is the "Login" link on accure.net.
+- API gateway: https://gateway.accure-platform.com — established by probe, not by
+  documentation. The platform bundle declares this URL as its Auth0 API audience. Anonymous
+  requests receive an nginx HTTP 403 at the edge, or a Fastify JSON 404 envelope on routes
+  that reach the application. Every route requires an Auth0-issued bearer token.
+- Authorization server: https://production-accure.eu.auth0.com — ACCURE's own Auth0
+  tenant. Its OpenID Provider metadata IS served anonymously and is the one machine-readable
+  document ACCURE publishes.
+
+ACCURE states on its product page that the platform provides "open REST and OPC-UA
+interfaces", SFTP and API endpoints for historical BMS logs, single sign-on and webhooks.
+None of that is documented publicly; it is a claim on a marketing page, not a contract.
+
+## Machine-readable documents
+
+- OpenID Provider metadata: https://production-accure.eu.auth0.com/.well-known/openid-configuration
+- JWKS: https://production-accure.eu.auth0.com/.well-known/jwks.json
+- ISO/IEC 27001:2022 certificate (PDF): https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a39_ACCURE_ISO27001_2022_certificate.pdf
+
+## Authentication
+
+OAuth 2.0 / OpenID Connect via Auth0.
+
+- Issuer: https://production-accure.eu.auth0.com/
+- Audience (the gateway API identifier): https://gateway.accure-platform.com
+- Grants: authorization_code (with PKCE, S256), client_credentials, refresh_token,
+  device_code, token-exchange
+- Token endpoint: https://production-accure.eu.auth0.com/oauth/token
+- Revocation: https://production-accure.eu.auth0.com/oauth/revoke
+
+API-level scopes are not published. The scopes advertised in the discovery document
+(openid, profile, offline_access, email, …) are the tenant's standard OIDC set, not the
+permissions defined on the gateway API.
+
+## Compliance
+
+- ISO/IEC 27001:2022 — certificate no. 316212 61 ISMS22, issued by DQS GmbH, certified
+  2024-09-04, valid until 2027-09-03. Scope: development, operation and maintenance of
+  battery analytics products, including associated support and consulting services.
+- No SOC 2 report published. No public trust centre (the in-product /account/trust-center
+  route is behind Auth0).
+- No security.txt on any ACCURE host. No published vulnerability disclosure policy or bug
+  bounty programme.
+
+## Products and solutions
+
+- Battery intelligence platform: https://www.accure.net/battery-analytics/battery-intelligence
+- Grid-scale energy storage: https://www.accure.net/battery-analytics-solutions/grid-scale-energy-storage
+- Safety manager: https://www.accure.net/battery-analytics-solutions/safety-manager
+- Performance manager: https://www.accure.net/battery-analytics-solutions/performance-manager
+- Lifetime manager: https://www.accure.net/battery-analytics-solutions/lifetime-manager
+- State of charge accuracy: https://www.accure.net/battery-analytics-solutions/lithium-battery-state-of-charge
+- Warranty coverage: https://www.accure.net/battery-analytics-solutions/warranty-coverage
+- BESS insurance: https://www.accure.net/battery-analytics-solutions/bess-insurance
+- Inverter / PCS analytics: https://www.accure.net/battery-analytics-solutions/inverter-analytics
+- Commissioning: https://www.accure.net/battery-analytics-solutions/commissioning
+- Augmentation: https://www.accure.net/battery-analytics-solutions/augmentation
+- Procurement: https://www.accure.net/battery-analytics-solutions/procurement
+- Quality assurance: https://www.accure.net/battery-analytics-solutions/quality-assurance
+- Emergency response: https://www.accure.net/battery-analytics-solutions/emergency-response
+- Tasks: https://www.accure.net/battery-analytics-solutions/tasks
+
+## Company
+
+- Website: https://www.accure.net/
+- About: https://www.accure.net/company/who-we-are
+- Contact / request a demo: https://www.accure.net/company/contact-us
+- Blog: https://www.accure.net/company/blogs
+- News: https://www.accure.net/company/news
+- Case studies: https://www.accure.net/company/case-studies
+- Webinars: https://www.accure.net/company/webinars
+- Events: https://www.accure.net/company/events
+- Resources: https://www.accure.net/battery-knowledge-resources/overview
+- Careers: https://www.accure.net/company/careers
+- Legal notice (Impressum): https://www.accure.net/legal
+- Privacy: https://www.accure.net/privacy
+- LinkedIn: https://www.linkedin.com/company/accure-battery-intelligence/
+- YouTube: https://www.youtube.com/c/ACCUREBatteryIntelligence
+
+Legal entity: ACCURE Battery Intelligence GmbH, Julicher Strasse 72a, 52070 Aachen,
+Germany. Registry: Aachen HRB 23851. VAT DE331791376. Founded 2020.
+
+## Not available
+
+- OpenAPI / Swagger / GraphQL / AsyncAPI / gRPC / WSDL contract — none published
+- Developer portal, API reference, getting started, changelog, status page — none published
+- SDKs on npm, PyPI, crates.io, Maven, NuGet, RubyGems, pkg.go.dev — none published
+- CLI, Postman collection, sandbox — none published
+- MCP server, A2A agent card, agent skills — none published
+- Pricing / plans — enterprise contact-sales only
+- GitHub organisation — github.com/accure exists but is empty (0 repos, created 2014) and
+  is NOT attributable to this company, which was founded in 2020
