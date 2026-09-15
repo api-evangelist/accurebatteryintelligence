@@ -1,14 +1,13 @@
 aid: accurebatteryintelligence
 name: ACCURE Battery Intelligence
-description: 'ACCURE Battery Intelligence GmbH (Aachen, Germany, founded 2020) builds cloud
-  battery analytics software for grid-scale battery energy storage systems (BESS), electric
-  vehicle fleets and stationary storage. Its platform ingests telemetry from BMS, EMS and PCS
-  systems and applies predictive models for safety, performance, state-of-charge accuracy,
-  lifetime and warranty management. The customer-facing product is the ACCURE platform at
-  accure-platform.com, an Auth0-protected single-page application backed by an API gateway at
-  gateway.accure-platform.com. ACCURE states the platform offers open REST and OPC-UA
-  interfaces, SFTP and API endpoints for historical BMS logs, single sign-on and webhooks, but
-  publishes no public developer portal, API reference or machine-readable contract.'
+description: ACCURE Battery Intelligence GmbH (Aachen, Germany, founded 2020) builds cloud battery analytics
+  software for grid-scale battery energy storage systems (BESS), electric vehicle fleets and stationary
+  storage. Its platform ingests telemetry from BMS, EMS and PCS systems and applies predictive models
+  for safety, performance, state-of-charge accuracy, lifetime and warranty management. The customer-facing
+  product is the ACCURE platform at accure-platform.com, an Auth0-protected single-page application backed
+  by an API gateway at gateway.accure-platform.com. ACCURE states the platform offers open REST and OPC-UA
+  interfaces, SFTP and API endpoints for historical BMS logs, single sign-on and webhooks, but publishes
+  no public developer portal, API reference or machine-readable contract.
 image: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a0b_ACCURE_favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/accurebatteryintelligence/refs/heads/main/apis.yml
 x-type: company
@@ -29,16 +28,15 @@ tags:
 - Electric Vehicles
 - Germany
 apis:
-- aid: accurebatteryintelligence-platform
+- aid: accurebatteryintelligence:accurebatteryintelligence-platform
   name: ACCURE Battery Intelligence Platform API
-  description: 'The authenticated API gateway behind the ACCURE battery analytics platform.
-    Established by probe, not by documentation: the platform single-page application at
-    accure-platform.com declares VITE_AUTH0_AUDIENCE "https://gateway.accure-platform.com"
-    against the Auth0 tenant production-accure.eu.auth0.com, and that host answers HTTP
-    requests (403 from the edge, and a Fastify JSON 404 envelope on routes that reach the
-    application). ACCURE publishes no OpenAPI, no API reference and no developer portal for
-    it; every route requires an Auth0-issued bearer token. Recorded as an auth-gated surface,
-    not a documented one.'
+  description: 'The authenticated API gateway behind the ACCURE battery analytics platform. Established
+    by probe, not by documentation: the platform single-page application at accure-platform.com declares
+    VITE_AUTH0_AUDIENCE "https://gateway.accure-platform.com" against the Auth0 tenant production-accure.eu.auth0.com,
+    and that host answers HTTP requests (403 from the edge, and a Fastify JSON 404 envelope on routes
+    that reach the application). ACCURE publishes no OpenAPI, no API reference and no developer portal
+    for it; every route requires an Auth0-issued bearer token. Recorded as an auth-gated surface, not
+    a documented one.'
   humanURL: https://accure-platform.com
   baseURL: https://gateway.accure-platform.com
   image: https://cdn.prod.website-files.com/67f3b2b2af7509d6ee127613/67f3b2b2af7509d6ee127a0b_ACCURE_favicon.png
@@ -92,12 +90,10 @@ x-enrichment:
 x-coverage:
   state: gated
   reason: customer-only-docs
-  detail: >-
-    ACCURE's only API is the gateway behind its customer platform — accure-platform.com is
-    an Auth0-protected SPA and its gateway at gateway.accure-platform.com answers every
-    anonymous request with an nginx 403 or a Fastify JSON 404 — and there is no developer
-    portal, reference or spec anywhere on accure.net, whose 216-URL sitemap contains no
-    developer, API, docs or pricing page at all.
+  detail: ACCURE's only API is the gateway behind its customer platform — accure-platform.com is an Auth0-protected
+    SPA and its gateway at gateway.accure-platform.com answers every anonymous request with an nginx 403
+    or a Fastify JSON 404 — and there is no developer portal, reference or spec anywhere on accure.net,
+    whose 216-URL sitemap contains no developer, API, docs or pricing page at all.
   evidence:
   - url: https://gateway.accure-platform.com/openapi.json
     status: 403
