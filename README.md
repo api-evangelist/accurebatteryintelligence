@@ -1,4 +1,4 @@
-# Accurebatteryintelligence
+# ACCURE Battery Intelligence
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,99 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Accurebatteryintelligence is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://equityzen.com/company/accurebatteryintelligence
+ACCURE Battery Intelligence GmbH (Aachen, Germany, founded 2020) builds cloud battery analytics software for grid-scale battery energy storage systems (BESS), electric vehicle fleets and stationary storage. Its platform ingests telemetry from BMS, EMS and PCS systems and applies predictive models for safety, performance, state-of-charge accuracy, lifetime and warranty management. The customer-facing product is the ACCURE platform at accure-platform.com, an Auth0-protected single-page application backed by an API gateway at gateway.accure-platform.com. ACCURE states the platform offers open REST and OPC-UA interfaces, SFTP and API endpoints for historical BMS logs, single sign-on and webhooks, but publishes no public developer portal, API reference or machine-readable contract.
+
+**Areas:** Company · Energy · Battery · Energy Storage · Analytics · Artificial Intelligence · IoT · Electric Vehicles · Germany
+
+## ACCURE Battery Intelligence on APIs.io
+
+Everything profiled for ACCURE Battery Intelligence is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/accurebatteryintelligence/](https://apis.io/providers/accurebatteryintelligence/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [ACCURE Battery Intelligence Platform API](https://apis.io/apis/accurebatteryintelligence/accurebatteryintelligence-platform/) — The authenticated API gateway behind the ACCURE battery analytics platform. Established by probe, not by documentation: the platform single-page application…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Accurebatteryintelligence Authentication](https://apis.io/security/accurebatteryintelligence/accurebatteryintelligence-authentication/)
+- [Accurebatteryintelligence Domain Security](https://apis.io/security/accurebatteryintelligence/accurebatteryintelligence-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Accurebatteryintelligence Plans Pricing](https://apis.io/plans/accurebatteryintelligence/accurebatteryintelligence-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Accurebatteryintelligence Rate Limits](https://apis.io/rate-limits/accurebatteryintelligence/accurebatteryintelligence-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.accure.net/)
+- [Support](https://www.accure.net/company/contact-us)
+- [Blog](https://www.accure.net/company/blogs)
+- [Privacy policy](https://www.accure.net/privacy)
+
+## API Evangelist rating
+
+**Kin Score 19.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 25.0 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.0** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/accurebatteryintelligence/](https://apis.io/providers/accurebatteryintelligence/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ACCURE Battery Intelligence: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/accurebatteryintelligence/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
